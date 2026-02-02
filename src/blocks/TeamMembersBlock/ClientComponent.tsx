@@ -13,7 +13,7 @@ export type TeamMembersClientProps = {
   description?: any
   teamMembers: TeamMember[]
   staffCategories?: Staff[]
-  defaultStaffCategory?: string | Staff
+  defaultStaffCategory?: string | Staff | number
 }
 
 const TeamMemberModal: React.FC<{
@@ -264,7 +264,6 @@ export const TeamMembersClient: React.FC<TeamMembersClientProps> = ({
   staffCategories = [],
   defaultStaffCategory,
 }) => {
-  console.log('defaultStaffCategory123', defaultStaffCategory)
   // Extract the ID from defaultStaffCategory if it's an object
   const defaultCategoryId = defaultStaffCategory
     ? typeof defaultStaffCategory === 'object'
