@@ -37,6 +37,17 @@ jobs:
         run: |
           set -euo pipefail
           echo "GCP_BUCKET: $BUCKET"
+          # Safe checks (values from secrets are masked in logs). These print booleans only.
+          if [[ "$BUCKET" == gs://* ]]; then
+            echo "BUCKET_HAS_GS_PREFIX=true"
+          else
+            echo "BUCKET_HAS_GS_PREFIX=false"
+          fi
+          if [[ "$BUCKET" == "gs://oet-website" || "$BUCKET" == "oet-website" ]]; then
+            echo "BUCKET_IS_gs://oet-website=true"
+          else
+            echo "BUCKET_IS_gs://oet-website=false"
+          fi
           FILENAME="backup-$(date +%Y-%m-%d_%H-%M-%S).dump"
           echo "Using containerized pg_dump to avoid client/server version mismatch"
           docker run --rm -v "$PWD":/backups postgres:17 \
