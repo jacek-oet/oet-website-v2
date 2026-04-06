@@ -1,4 +1,4 @@
-name: Nightly Postgres Backup
+name: Nightly Postgres Backup v1
 
 on:
   push:
