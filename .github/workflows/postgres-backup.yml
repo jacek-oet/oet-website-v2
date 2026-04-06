@@ -36,6 +36,7 @@ jobs:
           BUCKET: ${{ secrets.GCP_BUCKET }}
         run: |
           set -euo pipefail
+          echo "GCP_BUCKET: $BUCKET"
           FILENAME="backup-$(date +%Y-%m-%d_%H-%M-%S).dump"
           echo "Using containerized pg_dump to avoid client/server version mismatch"
           docker run --rm -v "$PWD":/backups postgres:17 \
